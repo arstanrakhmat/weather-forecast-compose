@@ -37,6 +37,7 @@ import androidx.navigation.NavController
 import com.example.weatherapp.data.DataOrException
 import com.example.weatherapp.model.Weather
 import com.example.weatherapp.model.WeatherItem
+import com.example.weatherapp.navigation.WeatherScreens
 import com.example.weatherapp.utils.formatDate
 import com.example.weatherapp.utils.formatDecimal
 import com.example.weatherapp.widgets.HumidityWeatherPressure
@@ -45,7 +46,11 @@ import com.example.weatherapp.widgets.WeatherAppBar
 import com.example.weatherapp.widgets.WeatherStateImage
 
 @Composable
-fun MainScreen(navController: NavController, mainViewModel: MainVewModel = hiltViewModel()) {
+fun MainScreen(
+    navController: NavController,
+    mainViewModel: MainVewModel = hiltViewModel(),
+    city: String?
+) {
 
     val weatherData =
         produceState<DataOrException<Weather, Boolean, Exception>>(
@@ -53,7 +58,7 @@ fun MainScreen(navController: NavController, mainViewModel: MainVewModel = hiltV
                 loading = true
             )
         ) {
-            value = mainViewModel.getWeatherData(city = "bishkek")
+            value = mainViewModel.getWeatherData(city = city.toString())
         }.value
 
     if (weatherData.loading == true) {
@@ -71,6 +76,9 @@ fun MainScaffold(weather: Weather, navController: NavController) {
             WeatherAppBar(
                 title = weather.city.name + ", ${weather.city.country}",
                 navController = navController,
+                onAddActionClicked = {
+                    navController.navigate(WeatherScreens.SearchScreen.name)
+                },
                 elevation = 5.dp
             ) {
                 Log.d("TAG", "MainScaffold: Button clicked")
