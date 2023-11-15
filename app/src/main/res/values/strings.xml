@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="about_app">Прогноз погоды v1.0.0</string>
+    <string name="api_used">С помощью API: https://openweathermap.org/</string>
 </resources>

@@ -5,6 +5,7 @@ enum class WeatherScreens {
     MainScreen,
     AboutScreen,
     SearchScreen,
-    SettingScreen
+    SettingScreen,
+    FavoritesScreen
 }
 
