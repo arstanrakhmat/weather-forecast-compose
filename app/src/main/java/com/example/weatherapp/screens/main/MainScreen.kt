@@ -4,13 +4,16 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -20,14 +23,17 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
+import com.example.weatherapp.R
 import com.example.weatherapp.data.DataOrException
 import com.example.weatherapp.model.Weather
+import com.example.weatherapp.model.WeatherItem
 import com.example.weatherapp.utils.formatDate
 import com.example.weatherapp.utils.formatDecimal
 import com.example.weatherapp.widgets.WeatherAppBar
@@ -114,8 +120,53 @@ fun MainContent(data: Weather) {
 
             }
         }
+        HumidityWeatherPressure(weather = data.list[0])
+        Divider()
     }
 }
+
+@Composable
+fun HumidityWeatherPressure(weather: WeatherItem) {
+    Row(
+        modifier = Modifier
+            .padding(12.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(modifier = Modifier.padding(4.dp)) {
+            Icon(
+                painter = painterResource(id = R.drawable.humidity),
+                contentDescription = "humidity icon",
+                modifier = Modifier.size(20.dp)
+            )
+
+            Text(text = "${weather.humidity}%", style = MaterialTheme.typography.labelMedium)
+        }
+
+        Row() {
+            Icon(
+                painter = painterResource(id = R.drawable.pressure),
+                contentDescription = "pressure icon",
+                modifier = Modifier.size(20.dp)
+            )
+
+            Text(text = "${weather.pressure} psi", style = MaterialTheme.typography.labelMedium)
+        }
+
+        Row() {
+            Icon(
+                painter = painterResource(id = R.drawable.wind),
+                contentDescription = "wind icon",
+                modifier = Modifier.size(20.dp)
+            )
+
+            Text(text = "${weather.humidity} mph", style = MaterialTheme.typography.labelMedium)
+        }
+
+    }
+}
+
 
 @Composable
 fun WeatherStateImage(imageUrl: String) {
