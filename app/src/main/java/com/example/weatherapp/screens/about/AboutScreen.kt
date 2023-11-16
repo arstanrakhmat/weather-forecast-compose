@@ -52,7 +52,7 @@ fun AboutScreen(navController: NavController) {
                 Text(
                     text = stringResource(id = R.string.api_used),
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Light
                 )
             }
         }
