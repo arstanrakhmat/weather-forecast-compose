@@ -30,7 +30,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun WeatherSplashScreen(navController: NavController) {
-    val defaultCity = "Moscow"
+    val defaultCity = "Osh"
     val scale = remember {
         Animatable(0f)
     }

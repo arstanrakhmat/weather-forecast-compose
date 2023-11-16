@@ -138,7 +138,7 @@ fun MainContent(data: Weather) {
         Divider()
         SunsetAndSunriseRow(weather = data.list[0])
         Text(
-            text = "This week",
+            text = "На этой неделе",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold
         )
