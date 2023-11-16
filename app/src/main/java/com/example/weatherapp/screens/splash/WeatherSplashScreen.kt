@@ -65,7 +65,7 @@ fun WeatherSplashScreen(navController: NavController) {
                 modifier = Modifier.size(95.dp)
             )
             Text(
-                text = "Find the Sun?",
+                text = "Арс. Прогноз погоды",
                 style = MaterialTheme.typography.headlineSmall,
                 color = Color.LightGray
             )
